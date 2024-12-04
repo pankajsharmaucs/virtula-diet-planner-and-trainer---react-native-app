@@ -76,7 +76,7 @@ const PersonalInfoScreen = ({ route, navigation }) => {
 
       {/* Age Input */}
       <Text style={styles.label}>Age:</Text>
-      <PaperInput
+      <TextInput
         label="Enter your Age"
         value={age}
         keyboardType="numeric"
@@ -87,7 +87,7 @@ const PersonalInfoScreen = ({ route, navigation }) => {
 
       {/* Weight Input */}
       <Text style={styles.label}>Weight (Kg):</Text>
-      <PaperInput
+      <TextInput
         label="Enter your Weight"
         value={weight}
         keyboardType="numeric"
@@ -98,7 +98,7 @@ const PersonalInfoScreen = ({ route, navigation }) => {
 
       {/* Height Input */}
       <Text style={styles.label}>Height (cm):</Text>
-      <PaperInput
+      <TextInput
         label="Enter your Height"
         value={height}
         keyboardType="numeric"
@@ -147,9 +147,10 @@ const styles = StyleSheet.create({
     color: '#555',
   },
   input: {
-    backgroundColor: '#000',
+    backgroundColor: '#fff',
     borderWidth: 1,
     borderColor: '#222',
+    color:"#000",
     borderRadius: 8,
     height: 50,
     fontSize: 18,
@@ -169,7 +170,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   button: {
-    backgroundColor: '#3498db',
+    backgroundColor: '#34dba4',
     paddingVertical: 15,
     borderRadius: 25,
     alignItems: 'center',

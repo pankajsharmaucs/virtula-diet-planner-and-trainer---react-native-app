@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, Button, StyleSheet, Image, ScrollView } from 'react-native';
+import { View, Text, Button, StyleSheet, Image, ScrollView, TouchableOpacity } from 'react-native';
 
 const DietWorkoutScreen = ({ route, navigation }) => {
   const { goal, weight, height, Age, Gender } = route.params;
@@ -137,8 +137,14 @@ const DietWorkoutScreen = ({ route, navigation }) => {
       <Text style={styles.workoutDescription}>{workoutPlan}</Text>
 
       <View style={{ marginBottom: 140 }}>
-        <Button title="Get Free Consultation" onPress={() => navigation.navigate('Contact')} />
+        <Button title="Get 1 Mounth Diet Plan" onPress={() => navigation.navigate('Contact')} />
       </View>
+
+      {/* Submit Button */}
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Contact')}>
+        <Text style={styles.buttonText}>Get 1 Mounth Diet Plan</Text>
+      </TouchableOpacity>
+
     </ScrollView>
   );
 };
@@ -222,6 +228,19 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginBottom: 20,
     fontStyle: 'italic',
+  },
+  button: {
+    backgroundColor: '#34dba4',
+    paddingVertical: 15,
+    borderRadius: 25,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 20,
+  },
+  buttonText: {
+    fontSize: 18,
+    color: '#fff',
+    fontWeight: '600',
   },
 });
 

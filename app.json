@@ -20,16 +20,16 @@
         "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.pspankajsharma222.planner"
+      "package": "com.proxpcpankajsharma.planner"
     },
     "web": {
       "favicon": "./assets/icon.png"
     },
     "extra": {
       "eas": {
-        "projectId": "3119c9ba-6668-4e0f-9a45-aded823c7b02"
+        "projectId": "4876f403-09c4-4f7c-8829-2f297f46cc85"
       }
     },
-    "owner": "pspankajsharma222"
+    "owner": "proxpcpankajsharma"
   }
 }

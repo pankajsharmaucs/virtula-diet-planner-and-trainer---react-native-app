@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ImageBackground, SafeAreaView, ScrollView } from 'react-native';
 import * as Animatable from 'react-native-animatable';
-import AsyncStorage from '@react-native-async-storage/async-storage'; // Import AsyncStorage
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { LinearGradient } from 'expo-linear-gradient';
 
 const Category = ({ navigation }) => {
 
@@ -10,56 +11,59 @@ const Category = ({ navigation }) => {
     navigation.navigate('Personal Info', { plan });
   };
 
+  const images = [
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1awnWrpjojsKVaFfijOZD9Rx9x5hvvObHB8C2H5XL26HLRnzBIHoVWN8&s=10',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAb-3u9u0wMvRdTN-clQ5cKVHl1_UN6WMA_ty7jR4kA_FAm2tPGHktw13p&s=10',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVnBn9Zu0lyI0P5yqEJD6Qa9xka9DTe25IyLlpclXGoo2nPWmRpcT93gAV&s=10',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxGevUVWbdHt9UDzwzYVqAJhh3AjH8dilkolnEQkzd7Uonf4mfPtQWqbv3&s=10',
+  ];
+
   return (
-    <View style={styles.container}>
 
-      <Animatable.Image
-        animation="zoomIn"
-        easing="ease-out"
-        source={require('../assets/icon.png')}
-        style={styles.logoImage}
-      />
+    <ScrollView style={{ width: "100%" }}>
 
-      <Text style={styles.title}>Select your Plan</Text>
+      <View style={styles.container}  >
 
-      {/* Button Options with Animations */}
-      <Animatable.View animation="fadeInUp" duration={1000} style={styles.buttonContainer}>
-        <TouchableOpacity
-          style={styles.selectButton}
-          onPress={() => handleLogin("Body Clean/Detox")}
-        >
-          <Text style={styles.buttonText}>Body Clean/Detox</Text>
-        </TouchableOpacity>
-      </Animatable.View>
+        <Animatable.Image
+          animation="zoomIn"
+          easing="ease-out"
+          source={require('../assets/icon.png')}
+          style={styles.logoImage}
+        />
 
-      <Animatable.View animation="fadeInUp" duration={1000} style={styles.buttonContainer}>
-        <TouchableOpacity
-          style={styles.selectButton}
-          onPress={() => handleLogin("Weight Loss")}
-        >
-          <Text style={styles.buttonText}>Weight Loss</Text>
-        </TouchableOpacity>
-      </Animatable.View>
+        <Text style={styles.title}>Select your Plan</Text>
 
-      <Animatable.View animation="fadeInUp" duration={1000} style={styles.buttonContainer}>
-        <TouchableOpacity
-          style={styles.selectButton}
-          onPress={() => handleLogin("Weight Gain")}
-        >
-          <Text style={styles.buttonText}>Weight Gain</Text>
-        </TouchableOpacity>
-      </Animatable.View>
+        {/* Button Options with Animations */}
+        {['Body Clean/Detox', 'Weight Loss', 'Weight Gain', 'Muscle Building'].map((plan, index) => (
 
-      <Animatable.View animation="fadeInUp" duration={1000} style={styles.buttonContainer}>
-        <TouchableOpacity
-          style={styles.selectButton}
-          onPress={() => handleLogin("Muscle Building")}
-        >
-          <Text style={styles.buttonText}>Muscle Building</Text>
-        </TouchableOpacity>
-      </Animatable.View>
+          <Animatable.View
+            key={index}
+            animation="fadeInUp"
+            duration={1000}
+            style={styles.buttonContainer}
+          >
+            <TouchableOpacity
+              style={styles.selectButton}
+              onPress={() => handleLogin(plan)}
+            >
+              <ImageBackground
+                source={images[index]} // Replace with your image
+                style={styles.imageBackground}
+                imageStyle={styles.imageStyle}
+              >
+                <LinearGradient
+                  // Button Linear Gradient
+                  colors={['rgba(255, 255, 255,.5)', 'rgb(8, 92, 166)']}
+                  style={styles.gradient}>
+                  <Text style={styles.buttonText}>{plan}</Text>
+                </LinearGradient>
+              </ImageBackground>
 
-    </View>
+            </TouchableOpacity>
+          </Animatable.View>
+        ))}
+      </View>
+    </ScrollView>
   );
 };
 
@@ -70,11 +74,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 30,
     backgroundColor: '#f4f4f4',
+    marginBottom: 200,
   },
   logoImage: {
     width: 150,
     height: 150,
-    marginBottom: 40, // Space between logo and input
+    marginBottom: 40,
   },
   title: {
     fontSize: 30,
@@ -90,19 +95,30 @@ const styles = StyleSheet.create({
   },
   selectButton: {
     width: '80%',
-    height: 60,
+    height: 150,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#3498db',
+    borderRadius: 10,
+    overflow: "hidden"
+  },
+  imageBackground: {
+    width: "100%",
+    height: "100%"
+  },
+  imageStyle: {
     borderRadius: 12,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.3,
-    shadowRadius: 6,
-    elevation: 5, // Add shadow effect for Android
+  },
+  gradient: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingBottom: 10, // Space between title and bottom edge
+    opacity: 1,
   },
   buttonText: {
-    fontSize: 18,
+    position: "absolute",
+    bottom: 20,
+    fontSize: 20,
     fontWeight: '600',
     color: '#fff',
     letterSpacing: 1,
